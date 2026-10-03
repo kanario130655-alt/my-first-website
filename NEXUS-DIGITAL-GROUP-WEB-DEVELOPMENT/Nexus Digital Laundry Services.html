@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Digital Laundry Services | Modern Eco-Friendly Garment Care</title>
+    
+    <style>
+        /* ==========================================================================
+           EXTERNAL STYLESHEET (style.css)
+           Shared across all 4 pages: index.html, about.html, services.html, contact.html
+           ========================================================================== */
+        
+        /* 1. DESIGN TOKENS & COLOR SCHEME */
+        :root {
+            --primary: #0284c7;       /* Fresh Water Blue */
+            --primary-dark: #0369a1;  /* Deep Ocean Navy */
+            --accent: #06b6d4;        /* Fresh Bubble Aqua */
+            --secondary: #0f172a;     /* Deep Slate */
+            --bg-light: #f8fafc;      /* Clean White/Slate */
+            --bg-card: #ffffff;       /* Pure White */
+            --text-dark: #1e293b;     /* Dark Charcoal Text */
+            --text-muted: #64748b;    /* Muted Gray Text */
+            --border-color: #e2e8f0;  /* Light Divider Line */
+            --success: #10b981;       /* Eco-Friendly Green */
+            
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-md: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.12);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 2. BOX MODEL & RESET RULES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CONTAINER UTILITY */
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        /* 3. HEADER & FLEXBOX NAVIGATION */
+        .site-header {
+            background-color: var(--bg-card);
+            border-bottom: 2px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--secondary);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+        }
+
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        /* FLEXBOX NAV LINKS */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        /* HOVER EFFECTS & ACTIVE STATE */
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--primary);
+            background-color: rgba(2, 132, 199, 0.08);
+        }
+
+        /* 4. BUTTON STYLES & HOVER EFFECTS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.6rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #1e293b;
+            transform: translateY(-2px);
+        }
+
+        /* 5. SECTIONS & LOGICAL HEADINGS */
+        .section-padding {
+            padding: 4.5rem 0;
+        }
+
+        .section-title-wrap {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(2, 132, 199, 0.1);
+            color: var(--primary);
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        h1 { font-size: 2.75rem; font-weight: 800; line-height: 1.2; color: var(--secondary); margin-bottom: 1rem; }
+        h2 { font-size: 2rem; font-weight: 700; line-height: 1.3; color: var(--secondary); margin-bottom: 0.85rem; }
+        h3 { font-size: 1.25rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem; }
+
+        /* 6. HERO SECTION & FLEXBOX LAYOUT */
+        .hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 4.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 580px;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-media {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .media-frame {
+            width: 100%;
+            max-width: 480px;
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+            padding: 1rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .svg-img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            display: block;
+        }
+
+        /* 7. GRID LAYOUTS & CARDS */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            width: 54px;
+            height: 54px;
+            background: rgba(2, 132, 199, 0.1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            color: var(--primary);
+        }
+
+        /* 8. LIST STYLING (UNORDERED, ORDERED, DESCRIPTION) */
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* ORDERED LIST STEP-BY-STEP PROCESS */
+        .process-ol {
+            list-style: none;
+            counter-reset: step-counter;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .process-ol li {
+            counter-increment: step-counter;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            position: relative;
+        }
+
+        .process-ol li::before {
+            content: counter(step-counter);
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary);
+            color: #ffffff;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        /* DESCRIPTION LIST (<dl>, <dt>, <dd>) */
+        .terms-dl {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .terms-dl dt {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 1.25rem;
+        }
+
+        .terms-dl dt:first-child { margin-top: 0; }
+
+        .terms-dl dd {
+            margin-left: 0;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        /* 9. PRICING TABLE STYLING */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            margin-top: 1.5rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .data-table th, 
+        .data-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background-color: var(--secondary);
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: rgba(2, 132, 199, 0.05);
+        }
+
+        /* 10. FORM STYLING & INPUT TYPES */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: var(--bg-light);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .inline-label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .alert-success {
+            display: none;
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            color: #166534;
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-sm);
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* 11. FOOTER STYLING */
+        .site-footer {
+            background-color: var(--secondary);
+            color: #94a3b8;
+            padding: 3.5rem 0 1.5rem 0;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-brand p {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* 12. RESPONSIVE MEDIA QUERIES (@media) */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+            .hero-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text {
+                max-width: 100%;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            h1 { font-size: 2.1rem; }
+            h2 { font-size: 1.6rem; }
+        }
+
+        /* PREVIEW SWITCHER BAR FOR INTERACTIVE TESTING & FILE INSPECTION */
+        .preview-switcher {
+            background: #0f172a;
+            padding: 0.65rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #ffffff;
+            font-size: 0.85rem;
+            border-bottom: 3px solid var(--primary);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .page-tabs {
+            display: flex;
+            gap: 0.4rem;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: #1e293b;
+            color: #cbd5e1;
+            border: 1px solid #334155;
+            padding: 0.4rem 0.85rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .code-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-content {
+            background: #0f172a;
+            color: #f8fafc;
+            width: 100%;
+            max-width: 900px;
+            max-height: 85vh;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-code-area {
+            background: #020617;
+            padding: 1.25rem;
+            border-radius: var(--radius-sm);
+            overflow: auto;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #38bdf8;
+            white-space: pre-wrap;
+            flex: 1;
+            border: 1px solid #1e293b;
+        }
+
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preview-switcher">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <strong style="color: var(--accent);">NEXUS DIGITAL MULTI-PAGE APP:</strong>
+            <span style="color: #94a3b8; font-size: 0.8rem;">(Click tabs to test pages or export files)</span>
+        </div>
+        <div class="page-tabs">
+            <button class="tab-btn active" id="btn-view-home" onclick="switchPage('home')">1. index.html</button>
+            <button class="tab-btn" id="btn-view-about" onclick="switchPage('about')">2. about.html</button>
+            <button class="tab-btn" id="btn-view-services" onclick="switchPage('services')">3. services.html</button>
+            <button class="tab-btn" id="btn-view-contact" onclick="switchPage('contact')">4. contact.html</button>
+            <button class="tab-btn" style="background: var(--success); color: white;" onclick="openExportModal()">📦 Export Individual Files</button>
+        </div>
+    </div>
+
+    <!-- HEADER & NAVIGATION (REQ #2 & REQ #3) -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="javascript:void(0)" onclick="switchPage('home')" class="logo-area">
+                <!-- SVG LOGO -->
+                <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" rx="22" fill="#0284c7"/>
+                    <circle cx="50" cy="50" r="30" stroke="white" stroke-width="8" stroke-dasharray="140 30"/>
+                    <path d="M40 50 C40 40, 60 40, 60 50 C60 60, 40 60, 40 50" stroke="white" stroke-width="6" stroke-linecap="round"/>
+                </svg>
+                <div class="logo-text">Nexus<span>Digital</span></div>
+            </a>
+
+            <!-- SEMANTIC HTML5 NAVIGATION LINKING ALL PAGES -->
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="javascript:void(0)" id="nav-home" class="active" onclick="switchPage('home')">Home</a></li>
+                    <li><a href="javascript:void(0)" id="nav-about" onclick="switchPage('about')">About Us</a></li>
+                    <li><a href="javascript:void(0)" id="nav-services" onclick="switchPage('services')">Services & Pricing</a></li>
+                    <li><a href="javascript:void(0)" id="nav-contact" onclick="switchPage('contact')">Order & Contact</a></li>
+                </ul>
+            </nav>
+
+            <div>
+                <a href="javascript:void(0)" onclick="switchPage('contact')" class="btn btn-primary">Schedule Pickup</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         PAGE 1: INDEX.HTML (HOME PAGE)
+         ========================================================================== -->
+    <div id="page-home" class="page-view active">
+        <main>
+            <!-- HERO SECTION (REQ #2 & REQ #12) -->
+            <section class="hero">
+                <div class="container hero-grid">
+                    <div class="hero-text">
+                        <span class="badge">Eco-Friendly Laundry Tech</span>
+                        <h1>Fresh, Clean Clothes Delivered to Your Doorstep.</h1>
+                        <p>Nexus Digital Laundry combines smart online booking, non-toxic eco solvents, and express 24-hour turnaround for professional clothing care.</p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="javascript:void(0)" onclick="switchPage('contact')" class="btn btn-primary">Book Pickup Now</a>
+                            <a href="javascript:void(0)" onclick="switchPage('services')" class="btn btn-secondary">View Price List</a>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-media">
+                        <div class="media-frame">
+                            <!-- IMAGE 1 WITH DESCRIPTIVE ALT TEXT (REQ #6) -->
+                            <svg class="svg-img" viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Smart Washing Machine Illustration - Automated Laundry Process">
+                                <title>Smart Washing Machine Illustration</title>
+                                <rect width="500" height="380" rx="16" fill="#f0f9ff"/>
+                                <rect x="130" y="40" width="240" height="300" rx="20" fill="#ffffff" stroke="#0284c7" stroke-width="6"/>
+                                <rect x="150" y="65" width="200" height="40" rx="8" fill="#e0f2fe"/>
+                                <circle cx="180" cy="85" r="10" fill="#0284c7"/>
+                                <circle cx="210" cy="85" r="6" fill="#06b6d4"/>
+                                <rect x="290" y="77" width="40" height="16" rx="4" fill="#0f172a"/>
+                                <circle cx="250" cy="220" r="80" fill="#e0f2fe" stroke="#0284c7" stroke-width="8"/>
+                                <circle cx="250" cy="220" r="62" fill="#38bdf8" opacity="0.3"/>
+                                <path d="M220 220 C230 200, 270 240, 280 220" stroke="#0369a1" stroke-width="6" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FEATURES & UNORDERED LIST (REQ #7 LIST TYPE 1) -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <span class="badge">Why Nexus Digital</span>
+                        <h2>Premium Care for Every Fabric</h2>
+                        <p>We combine modern washing technology with artisan fabric care.</p>
+                    </div>
+
+                    <div class="grid-3">
+                        <article class="card">
+                            <div class="card-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </div>
+                            <h3>100% Eco-Safe Wash</h3>
+                            <p>We use biodegradable detergents gentle on sensitive skin and tough on stains.</p>
+                            <!-- UNORDERED LIST (REQ #7) -->
+                            <ul class="feature-list">
+                                <li>Phosphate-free solutions</li>
+                                <li>Hypoallergenic rinse cycles</li>
+                                <li>Fabric softness guaranteed</li>
+                            </ul>
+                        </article>
+
+                        <article class="card">
+                            <div class="card-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                            </div>
+                            <h3>Express Doorstep Pickup</h3>
+                            <p>Schedule a convenient 1-hour window and our courier will collect your laundry bag.</p>
+                            <ul class="feature-list">
+                                <li>Contactless pickup options</li>
+                                <li>Real-time SMS updates</li>
+                                <li>24-Hour delivery turnaround</li>
+                            </ul>
+                        </article>
+
+                        <article class="card">
+                            <div class="card-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <h3>Digital Tagging & Tracking</h3>
+                            <p>Every garment is barcoded so your items are never misplaced or mixed up.</p>
+                            <ul class="feature-list">
+                                <li>Individual item tracking</li>
+                                <li>Stain inspection logs</li>
+                                <li>Instant digital receipt</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ORDERED LIST (REQ #7 LIST TYPE 2) -->
+            <section class="section-padding" style="background: var(--bg-card); border-top: 1px solid var(--border-color);">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <span class="badge">Simple Process</span>
+                        <h2>How Nexus Digital Works</h2>
+                        <p>Get fresh laundry back in 4 simple steps.</p>
+                    </div>
+
+                    <!-- ORDERED LIST (REQ #7) -->
+                    <ol class="process-ol">
+                        <li>
+                            <h3>Book Online</h3>
+                            <p>Select your preferred pickup time and service tier using our online booking form.</p>
+                        </li>
+                        <li>
+                            <h3>We Collect</h3>
+                            <p>Our driver picks up your laundry bag straight from your home or office door.</p>
+                        </li>
+                        <li>
+                            <h3>Eco Clean & Iron</h3>
+                            <p>Clothes are sanitized, washed, folded, or steam ironed expertly by our staff.</p>
+                        </li>
+                        <li>
+                            <h3>Fresh Delivery</h3>
+                            <p>Receive your crisp, fragrant wardrobe neatly packed and ready to wear.</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ==========================================================================
+         PAGE 2: ABOUT.HTML (ABOUT US PAGE)
+         ========================================================================== -->
+    <div id="page-about" class="page-view">
+        <main>
+            <section class="section-padding" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <span class="badge">Our Story</span>
+                        <h1>Pioneering Modern Eco-Laundry</h1>
+                        <p>Founded by the Nexus Digital team, we are modernizing garment care with zero-emission washing practices and sustainable solutions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="hero-grid">
+                        <div class="hero-text">
+                            <h2>Revolutionizing Garment Care Since 2024</h2>
+                            <p>Nexus Digital Laundry Services was established with a single vision: removing the hassle from weekly laundry while protecting our environment.</p>
+                            <p>Traditional dry cleaners use harsh chemical solvents like PERC. At Nexus Digital, we utilize 100% wet-cleaning technology and gentle, non-toxic detergents that leave garments softer, cleaner, and scent-fresh without harming water systems.</p>
+                            
+                            <h3>Our Core Commitments:</h3>
+                            <ul class="feature-list">
+                                <li>Zero perchloroethylene (PERC-free) cleaning formulas</li>
+                                <li>Water recycling filtration systems saving 40% water per wash</li>
+                                <li>Reusable garment bags for every recurring subscriber</li>
+                            </ul>
+                        </div>
+
+                        <div class="hero-media">
+                            <div class="media-frame">
+                                <!-- IMAGE 2 WITH DESCRIPTIVE ALT TEXT (REQ #6) -->
+                                <svg class="svg-img" viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eco-Friendly Laundry Facility Illustration - Clean Green Technology">
+                                    <title>Eco-Friendly Laundry Facility Illustration</title>
+                                    <rect width="500" height="380" rx="16" fill="#ecfdf5"/>
+                                    <circle cx="250" cy="190" r="120" fill="#10b981" opacity="0.15"/>
+                                    <path d="M250 90 C320 90, 350 160, 350 230 C280 230, 250 180, 250 90 Z" fill="#10b981"/>
+                                    <path d="M250 90 C180 90, 150 160, 150 230 C220 230, 250 180, 250 90 Z" fill="#059669"/>
+                                    <line x1="250" y1="90" x2="250" y2="280" stroke="#ffffff" stroke-width="6"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DESCRIPTION LIST (REQ #7 LIST TYPE 3: <dl>, <dt>, <dd>) -->
+            <section class="section-padding" style="background: var(--bg-card); border-top: 1px solid var(--border-color);">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <span class="badge">Fabric Glossary</span>
+                        <h2>Understanding Our Specialized Care</h2>
+                        <p>Learn how we treat different garments in our modern facility.</p>
+                    </div>
+
+                    <!-- DESCRIPTION LIST -->
+                    <dl class="terms-dl">
+                        <dt>Wet Cleaning Technology</dt>
+                        <dd>A non-toxic, eco-friendly alternative to dry cleaning that uses water and specialized biodegradable detergents to safely clean delicate fabrics including silk, wool, and rayon.</dd>
+
+                        <dt>Steam Pressing & Finishing</dt>
+                        <dd>High-temperature steam treatment that eliminates 99.9% of bacteria while removing stubborn wrinkles from dress shirts, suits, and trousers.</dd>
+
+                        <dt>Wash & Fold (By the Pound)</dt>
+                        <dd>Everyday laundry service where clothes are sorted by color, washed in temperature-controlled water, tumble dried on low heat, and neatly folded.</dd>
+
+                        <dt>Sanitizing Ozone Treatment</dt>
+                        <dd>An advanced wash cycle enriched with active oxygen that neutralizes deep odors, bacteria, and allergens without damaging delicate fabric fibers.</dd>
+                    </dl>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ==========================================================================
+         PAGE 3: SERVICES.HTML (SERVICES & PRICING TABLE PAGE)
+         ========================================================================== -->
+    <div id="page-services" class="page-view">
+        <main>
+            <section class="section-padding" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <span class="badge">Transparent Pricing</span>
+                        <h1>Our Services & Price Schedule</h1>
+                        <p>No hidden fees. Professional garment care tailored to your weekly budget.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <h2>Detailed Service Price List</h2>
+                    <p>Prices include complimentary sorting and eco-detergent wash cycles.</p>
+
+                    <!-- DATA TABLE REQUIREMENT (REQ #4) -->
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Service Category</th>
+                                    <th>Included Treatment</th>
+                                    <th>Turnaround Time</th>
+                                    <th>Standard Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Everyday Wash & Fold</strong></td>
+                                    <td>Color sorting, eco-wash, tumble dry, neat folding</td>
+                                    <td>24 Hours</td>
+                                    <td>$1.75 / lb</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Executive Shirt Service</strong></td>
+                                    <td>Collar pre-treatment, wash, hand steam press, hanger packaging</td>
+                                    <td>24 Hours</td>
+                                    <td>$3.50 / shirt</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Dry Cleaning / Wet Clean</strong></td>
+                                    <td>Suits, dresses, blazers, delicate stain removal treatment</td>
+                                    <td>48 Hours</td>
+                                    <td>$12.00 / piece</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bedding & Comforters</strong></td>
+                                    <td>Deep ozone sanitization, hypoallergenic wash cycle</td>
+                                    <td>48 Hours</td>
+                                    <td>$25.00 / item</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Express 6-Hour Rush</strong></td>
+                                    <td>Priority washing and immediate doorstep express delivery</td>
+                                    <td>6 Hours</td>
+                                    <td>+$15.00 flat fee</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin-top: 3.5rem;" class="hero-grid">
+                        <div class="hero-media">
+                            <div class="media-frame">
+                                <!-- IMAGE 3 WITH DESCRIPTIVE ALT TEXT (REQ #6) -->
+                                <svg class="svg-img" viewBox="0 0 500 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Professional Garment Rack Illustration - Crisp Clean Clothes on Hangers">
+                                    <title>Professional Garment Rack Illustration</title>
+                                    <rect width="500" height="320" rx="16" fill="#f8fafc"/>
+                                    <line x1="50" y1="50" x2="450" y2="50" stroke="#64748b" stroke-width="8" stroke-linecap="round"/>
+                                    <path d="M120 50 L150 90 L100 120 H200 L150 90" stroke="#0284c7" stroke-width="4" fill="none"/>
+                                    <rect x="100" y="120" width="100" height="160" rx="8" fill="#0284c7"/>
+                                    <path d="M250 50 L280 90 L230 120 H330 L280 90" stroke="#06b6d4" stroke-width="4" fill="none"/>
+                                    <rect x="230" y="120" width="100" height="170" rx="8" fill="#06b6d4"/>
+                                    <path d="M380 50 L410 90 L360 120 H460 L410 90" stroke="#0f172a" stroke-width="4" fill="none"/>
+                                    <rect x="360" y="120" width="100" height="150" rx="8" fill="#0f172a"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="hero-text">
+                            <h3>Specialized Care Add-ons</h3>
+                            <ul class="feature-list">
+                                <li><strong>Stain Specialist Removal:</strong> Free pre-treatment for red wine, coffee, ink, and oil spots.</li>
+                                <li><strong>Custom Scent Selection:</strong> Lavender, Fresh Cotton, or Unscented Hypoallergenic options.</li>
+                                <li><strong>Minor Tailoring & Buttons:</strong> Complimentary loose button replacement on executive shirts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ==========================================================================
+         PAGE 4: CONTACT.HTML (CONTACT & ORDER FORM PAGE)
+         ========================================================================== -->
+    <div id="page-contact" class="page-view">
+        <main>
+            <section class="section-padding" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <span class="badge">Book & Contact</span>
+                        <h1>Schedule Your Pickup Today</h1>
+                        <p>Fill out our interactive form below to order a pickup or contact our team directly.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="grid-3" style="grid-template-columns: 1fr 2fr; gap: 3rem;">
+                        <!-- SIDEBAR INFO (REQ #2 <aside>) -->
+                        <aside>
+                            <div class="card">
+                                <h3>Nexus Digital HQ</h3>
+                                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Visit our flagship eco-hub or get in touch with support.</p>
+                                
+                                <p><strong>Address:</strong><br>104 Fresh Water Lane, Suite 200<br>Digital City, DC 90210</p>
+                                <br>
+                                <p><strong>Phone:</strong><br>+1 (800) 555-NEXUS</p>
+                                <br>
+                                <p><strong>Email:</strong><br>support@nexuslaundry.com</p>
+                                <br>
+                                <p><strong>Working Hours:</strong><br>Mon - Sat: 7:00 AM - 8:00 PM<br>Sunday: 9:00 AM - 5:00 PM</p>
+                            </div>
+
+                            <div style="margin-top: 1.5rem;" class="media-frame">
+                                <!-- IMAGE 4 WITH DESCRIPTIVE ALT TEXT (REQ #6) -->
+                                <svg class="svg-img" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Customer Service Team Illustration - Ready to assist with laundry orders">
+                                    <title>Customer Service Team Illustration</title>
+                                    <rect width="300" height="180" rx="12" fill="#e0f2fe"/>
+                                    <circle cx="150" cy="70" r="35" fill="#0284c7"/>
+                                    <path d="M90 150 C90 110, 210 110, 210 150" fill="#0f172a"/>
+                                </svg>
+                            </div>
+                        </aside>
+
+                        <!-- FORM REQUIREMENT WITH MULTIPLE INPUT TYPES (REQ #5) -->
+                        <div class="card">
+                            <h2>Online Pickup & Order Form</h2>
+                            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Please fill in your details to schedule a courier pickup.</p>
+
+                            <form id="laundry-order-form" onsubmit="handleFormSubmit(event)">
+                                <div class="form-grid">
+                                    <!-- INPUT TYPE: TEXT -->
+                                    <div class="form-group">
+                                        <label for="full-name" class="form-label">Full Name *</label>
+                                        <input type="text" id="full-name" class="form-control" placeholder="Jane Doe" required>
+                                    </div>
+
+                                    <!-- INPUT TYPE: EMAIL -->
+                                    <div class="form-group">
+                                        <label for="email-addr" class="form-label">Email Address *</label>
+                                        <input type="email" id="email-addr" class="form-control" placeholder="jane@example.com" required>
+                                    </div>
+
+                                    <!-- INPUT TYPE: TEL -->
+                                    <div class="form-group">
+                                        <label for="phone-num" class="form-label">Phone Number *</label>
+                                        <input type="tel" id="phone-num" class="form-control" placeholder="(555) 000-0000" required>
+                                    </div>
+
+                                    <!-- INPUT TYPE: DATE -->
+                                    <div class="form-group">
+                                        <label for="pickup-date" class="form-label">Preferred Pickup Date *</label>
+                                        <input type="date" id="pickup-date" class="form-control" required>
+                                    </div>
+
+                                    <!-- INPUT TYPE: SELECT -->
+                                    <div class="form-group full-width">
+                                        <label for="service-tier" class="form-label">Select Service Tier *</label>
+                                        <select id="service-tier" class="form-control" required>
+                                            <option value="">-- Choose a Service --</option>
+                                            <option value="wash-fold">Wash & Fold ($1.75 / lb)</option>
+                                            <option value="dry-clean">Dry Cleaning & Pressing ($12.00 / item)</option>
+                                            <option value="executive-shirts">Executive Shirts ($3.50 / item)</option>
+                                            <option value="bedding">Bedding & Heavy Comforters ($25.00)</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- INPUT TYPE: RADIO BUTTONS -->
+                                    <div class="form-group full-width">
+                                        <label class="form-label">Detergent Scent Preference</label>
+                                        <div class="radio-group">
+                                            <label class="inline-label">
+                                                <input type="radio" name="detergent" value="lavender" checked> Fresh Lavender
+                                            </label>
+                                            <label class="inline-label">
+                                                <input type="radio" name="detergent" value="free-clear"> Free & Clear (Hypoallergenic)
+                                            </label>
+                                            <label class="inline-label">
+                                                <input type="radio" name="detergent" value="citrus"> Clean Citrus
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- INPUT TYPE: CHECKBOXES -->
+                                    <div class="form-group full-width">
+                                        <label class="form-label">Additional Options</label>
+                                        <div class="checkbox-group">
+                                            <label class="inline-label">
+                                                <input type="checkbox" id="opt-rush" value="yes"> Express Rush Delivery (+$15)
+                                            </label>
+                                            <label class="inline-label">
+                                                <input type="checkbox" id="opt-stain" value="yes"> Stain Pre-treatment Requested
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- INPUT TYPE: TEXTAREA -->
+                                    <div class="form-group full-width">
+                                        <label for="special-instructions" class="form-label">Special Delivery / Gate Instructions</label>
+                                        <textarea id="special-instructions" class="form-control" rows="4" placeholder="E.g., Please leave laundry bag on front porch or gate code #4321..."></textarea>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Pickup Request</button>
+                                
+                                <div id="form-success-alert" class="alert-success">
+                                    ✓ Thank you! Your laundry pickup request has been received by Nexus Digital.
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER COMMON TO ALL HTML PAGES (REQ #2 & REQ #15) -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <svg class="logo-icon" style="width: 32px; height: 32px;" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" rx="22" fill="#0284c7"/>
+                            <circle cx="50" cy="50" r="30" stroke="white" stroke-width="8" stroke-dasharray="140 30"/>
+                        </svg>
+                        <span style="font-size: 1.2rem; font-weight: 800; color: #fff;">Nexus Digital</span>
+                    </div>
+                    <p>Eco-friendly, tech-driven laundry and dry cleaning services for modern households.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Pages</h4>
+                    <ul class="footer-links">
+                        <li><a href="javascript:void(0)" onclick="switchPage('home')">Home</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('about')">About Us</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('services')">Services & Pricing</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('contact')">Order & Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="javascript:void(0)" onclick="switchPage('services')">Wash & Fold</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('services')">Eco Dry Cleaning</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('services')">Steam Pressing</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Academic Project</h4>
+                    <ul class="footer-links">
+                        <li><a href="javascript:void(0)">Group: Nexus Digital</a></li>
+                        <li><a href="javascript:void(0)">Topic: Laundry Service</a></li>
+                        <li><a href="javascript:void(0)">Semester Assessment</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nexus Digital Laundry Services. Designed & Developed by <strong>Nexus Digital</strong>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CODE EXPORTER MODAL FOR INSPECTING INDIVIDUAL FILES -->
+    <div id="exportModal" class="code-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📦 Source Code Exporter for Individual Files</h3>
+                <button class="btn btn-secondary" style="padding: 0.4rem 0.8rem;" onclick="closeExportModal()">✕ Close</button>
+            </div>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">Copy the code below for each file when creating your project folder:</p>
+            <div style="display: flex; gap: 0.4rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                <button class="tab-btn active" id="codeTabCss" onclick="showCodeTab('css')">style.css</button>
+                <button class="tab-btn" id="codeTabHome" onclick="showCodeTab('home')">index.html</button>
+                <button class="tab-btn" id="codeTabAbout" onclick="showCodeTab('about')">about.html</button>
+                <button class="tab-btn" id="codeTabServices" onclick="showCodeTab('services')">services.html</button>
+                <button class="tab-btn" id="codeTabContact" onclick="showCodeTab('contact')">contact.html</button>
+            </div>
+            <div id="codeDisplay" class="modal-code-area">Select a file tab above...</div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE SCRIPT -->
+    <script>
+        // PAGE SWITCHING ROUTER FOR LIVE PREVIEW
+        function switchPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(p => p.classList.remove('active'));
+
+            // Show selected page
+            const activePage = document.getElementById('page-' + pageId);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+
+            // Update header navigation active states
+            const navIds = ['home', 'about', 'services', 'contact'];
+            navIds.forEach(id => {
+                const navLink = document.getElementById('nav-' + id);
+                if (navLink) {
+                    if (id === pageId) {
+                        navLink.classList.add('active');
+                    } else {
+                        navLink.classList.remove('active');
+                    }
+                }
+
+                // Top preview toolbar buttons
+                const btnView = document.getElementById('btn-view-' + id);
+                if (btnView) {
+                    if (id === pageId) {
+                        btnView.classList.add('active');
+                    } else {
+                        btnView.classList.remove('active');
+                    }
+                }
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // FORM SUBMISSION HANDLER
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const alertBox = document.getElementById('form-success-alert');
+            alertBox.style.display = 'block';
+            
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+                document.getElementById('laundry-order-form').reset();
+            }, 4000);
+        }
+
+        // EXPORT MODAL CODE GENERATOR FOR STANDALONE FILES
+        function openExportModal() {
+            document.getElementById('exportModal').style.display = 'flex';
+            showCodeTab('css');
+        }
+
+        function closeExportModal() {
+            document.getElementById('exportModal').style.display = 'none';
+        }
+
+        function showCodeTab(type) {
+            const tabs = ['css', 'home', 'about', 'services', 'contact'];
+            tabs.forEach(t => {
+                const btn = document.getElementById('codeTab' + t.charAt(0).toUpperCase() + t.slice(1));
+                if (btn) btn.classList.remove('active');
+            });
+
+            const activeBtn = document.getElementById('codeTab' + type.charAt(0).toUpperCase() + type.slice(1));
+            if (activeBtn) activeBtn.classList.add('active');
+
+            const display = document.getElementById('codeDisplay');
+            
+            if (type === 'css') {
+                const styleContent = document.querySelector('style').innerHTML.split('/* PREVIEW SWITCHER BAR')[0];
+                display.textContent = `/* style.css - Nexus Digital External Stylesheet */\n\n` + styleContent.trim();
+            } else {
+                const titles = {
+                    home: 'Home - Nexus Digital Laundry',
+                    about: 'About Us - Nexus Digital Laundry',
+                    services: 'Services & Pricing - Nexus Digital Laundry',
+                    contact: 'Contact & Order - Nexus Digital Laundry'
+                };
+                
+                const pageElem = document.getElementById('page-' + type);
+                const headerElem = document.querySelector('.site-header').outerHTML;
+                const footerElem = document.querySelector('.site-footer').outerHTML;
+                const pageContent = pageElem ? pageElem.innerHTML : '';
+
+                display.textContent = `<!-- ${type}.html -->\n<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>${titles[type]}</title>\n    <link rel="stylesheet" href="style.css">\n</head>\n<body>\n\n${headerElem}\n\n${pageContent.trim()}\n\n${footerElem}\n\n</body>\n</html>`;
+            }
+        }
+    </script>
+</body>
+</html>
